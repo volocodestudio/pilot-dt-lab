@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="uk" data-theme="light" data-look="dark">
+<head>
+<meta charset="utf-8"><meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Анімовані секції: тест</title>
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="lab.css">
+</head>
+<body>
+
+<header class="bar">
+  <strong class="bar-name">Анімовані секції: тест</strong>
+  <button class="bar-toggle" type="button" aria-expanded="false" aria-controls="bar-controls">Налаштування</button>
+  <div class="bar-controls" id="bar-controls">
+    <div class="seg" role="group" aria-label="Вигляд">
+      <span class="seg-name">Вигляд</span>
+      <button type="button" data-set="look" data-value="dark">Темна сцена</button>
+      <button type="button" data-set="look" data-value="steel">Світла сталь</button>
+      <button type="button" data-set="look" data-value="drawing">Креслення</button>
+    </div>
+    <div class="seg" role="group" aria-label="Темп">
+      <span class="seg-name">Темп</span>
+      <button type="button" data-set="tempo" data-value="0.65">Швидко</button>
+      <button type="button" data-set="tempo" data-value="1">Звично</button>
+      <button type="button" data-set="tempo" data-value="1.5">Повільно</button>
+    </div>
+    <div class="seg" role="group" aria-label="Анімація">
+      <button type="button" data-set="still" data-value="0">З анімацією</button>
+      <button type="button" data-set="still" data-value="1">Без анімації</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="note note-top">
+    <h1>Три типи анімованих секцій</h1>
+    <p>Прокручуйте сторінку. Рендери, назви й цифри справжні, з каталогу, це ще чернетка до підпису інженера. Вигляд перемикається вгорі й діє на всі три типи.</p>
+    <p class="note-more"><a href="ten.html">Десять інших подач за мотивами сторінки DJI Inspire 3</a></p>
+  </section>
+
+  <section class="note">
+    <h2>Тип 1. Один виріб</h2>
+    <p>Виріб стоїть, потім лягає, і з’являються його цифри. Може стати верхом сторінки виробу або першим екраном головної.</p>
+    <p class="note-more">У списку всі 78 виробів і частин, що мають обидва ракурси. Кут повороту виміряно для кожного окремо. У 9 наборів із кількох деталей поворот не складається, тому там вигляд просто змінюється, вони позначені у списку.</p>
+    <div class="seg seg-inline pick" role="group" aria-label="Виріб">
+      <label class="seg-name" for="tool-pick">Виріб</label>
+      <button type="button" data-step="-1" aria-label="Попередній виріб">Попередній</button>
+      <select id="tool-pick"></select>
+      <button type="button" data-step="1" aria-label="Наступний виріб">Наступний</button>
+    </div>
+  </section>
+  <section class="scene one" id="one" lang="en" aria-label="Type 1"></section>
+
+  <section class="note">
+    <h2>Тип 2. Лінійка</h2>
+    <p>Вироби однієї лінії піднімаються над підлогою, далі прокрутка веде по них, а наведення чи клавіша Tab обирає будь-який. Може стати блоком на головній або верхом сторінки категорії.</p>
+  </section>
+  <section class="scene line" id="line" lang="en" aria-label="Type 2"></section>
+
+  <section class="note">
+    <h2>Тип 3. Система</h2>
+    <p>Компоненти заходять уздовж власної осі і складаються в готовий набір. Склад справжній: стандартні, потім опційні, те, що в систему не входить, не показано. Може стати блоком систем на головній або на сторінці лінії.</p>
+  </section>
+  <section class="scene system" id="system" lang="en" aria-label="Type 3"></section>
+
+  <section class="note note-end">
+    <h2>Кінець тесту</h2>
+    <p>Скажіть, який тип і вигляд лишити. Кнопка «Без анімації» вгорі показує те, що побачить людина з вимкненою анімацією в системі.</p>
+  </section>
+</main>
+
+<script src="data.js"></script>
+<script src="lab.js"></script>
+</body>
+</html>

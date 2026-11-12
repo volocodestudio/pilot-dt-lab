@@ -1,0 +1,225 @@
+/* Motion lab. Colours, type and sizes come from the site's tokens; only stage proportions are in vh and %. */
+* { box-sizing: border-box; }
+html { color-scheme: only light; }
+body {
+  margin: 0;
+  background: var(--studio-bg);
+  color: var(--studio-ink);
+  font-family: var(--font-sans);
+  font-size: var(--size-studio-body);
+  line-height: 1.5;
+  overflow-x: clip;
+}
+button { font: inherit; }
+:focus-visible { outline: var(--size-field-ring-w) solid var(--field-ring); outline-offset: var(--size-field-ring-offset); }
+
+/* ── The lab bar: the site's topbar height, so a stage has the geometry it would have on the site. ── */
+.bar {
+  position: sticky; top: 0; z-index: 20;
+  display: flex; align-items: center; gap: 24px;
+  min-height: var(--size-studio-topbar);
+  padding: 8px var(--space-studio-margin-wide-fluid);
+  background: var(--studio-graphiteStage);
+  color: var(--studio-onInk);
+}
+.bar-name { font-size: var(--size-studio-nav); font-weight: var(--font-studio-label); white-space: nowrap; margin-right: auto; }
+.bar-controls { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.bar-toggle { display: none; }
+.seg { display: flex; align-items: center; gap: 2px; }
+.seg-name { font-size: var(--size-studio-label); color: var(--studio-onInkSoft); margin-right: 8px; }
+.seg button {
+  min-height: 34px; padding: 4px 11px;
+  background: transparent; color: var(--studio-onInkMuted);
+  border: var(--size-field-hairline) solid var(--studio-onInkLine);
+  border-radius: var(--radius-studio-r-sm);
+  font-size: var(--size-studio-label); cursor: pointer;
+}
+.seg button:hover { color: var(--studio-onInk); border-color: var(--studio-onInkEdge); }
+.seg button[aria-pressed="true"] { background: var(--studio-onInk); color: var(--studio-ink); border-color: var(--studio-onInk); font-weight: var(--font-studio-label); }
+
+.seg-inline { margin-top: 14px; flex-wrap: wrap; gap: 4px; }
+.seg-inline .seg-name { color: var(--studio-ink2); }
+.seg-inline button { color: var(--studio-ink2); border-color: var(--studio-rule); min-height: 40px; }
+.seg-inline button:hover { color: var(--studio-ink); border-color: var(--studio-ink2); }
+.seg-inline button[aria-pressed="true"] { background: var(--studio-ink); color: var(--studio-bg); border-color: var(--studio-ink); }
+
+/* ── Notes between scenes are written for the owner, not for the site. ── */
+.note { max-width: calc(68ch + 2 * var(--space-studio-margin-fluid)); padding: 40px var(--space-studio-margin-fluid) 28px; }
+.note h1 { margin: 0 0 10px; font-size: var(--size-studio-h2-fluid); letter-spacing: var(--size-studio-h2-tracking); line-height: 1.1; }
+.note h2 { margin: 0 0 6px; font-size: var(--size-field-h4); letter-spacing: var(--size-field-h4-tracking); line-height: 1.2; }
+.note p { margin: 0; color: var(--studio-ink2); }
+.note-top { padding-top: 48px; padding-bottom: 8px; }
+.note p.note-more { margin-top: 8px; }
+.note a { color: var(--studio-ink); text-underline-offset: 3px; }
+.pick select {
+  min-height: 40px; max-width: min(100%, 420px); padding: 0 10px;
+  font: inherit; font-size: var(--size-studio-label); color: var(--studio-ink);
+  background: var(--studio-bg); border: var(--size-field-hairline) solid var(--studio-rule); border-radius: var(--radius-studio-r-sm);
+}
+.note-end { padding-bottom: 120px; }
+
+/* ── Looks. Each look only sets the stage's own variables, plus the few things named below. ── */
+:root[data-look="dark"] .stage {
+  --bg: var(--studio-graphiteStage); --ink: var(--studio-onInk); --ink2: var(--studio-onInkSoft);
+  --rule: var(--studio-onInkLine); --strong-rule: var(--studio-onInkEdge); --outline-ink: var(--studio-onInk);
+}
+:root[data-look="steel"] .stage {
+  --bg: var(--studio-surf); --ink: var(--studio-ink); --ink2: var(--studio-ink2);
+  --rule: var(--studio-rule); --strong-rule: var(--studio-ink2); --outline-ink: var(--studio-ink);
+}
+:root[data-look="drawing"] .stage {
+  --bg: var(--studio-bg); --ink: var(--studio-ink); --ink2: var(--studio-ink2);
+  --rule: var(--studio-rule); --strong-rule: var(--studio-ink); --outline-ink: var(--studio-ink);
+}
+
+/* ── The pinned scene ── */
+.scene { position: relative; height: calc(var(--len, 200) * 1vh + 100svh - var(--size-studio-topbar)); }
+.stage {
+  position: sticky; top: var(--size-studio-topbar);
+  height: calc(100svh - var(--size-studio-topbar));
+  overflow: hidden;
+  background: var(--bg); color: var(--ink);
+}
+.glow, .paper { position: absolute; inset: 0; pointer-events: none; display: none; }
+:root[data-look="dark"] .glow {
+  display: block; inset: auto; left: 0; top: 0; width: 130vmax; height: 130vmax; margin: -65vmax 0 0 -65vmax;
+  background: radial-gradient(closest-side, var(--studio-graphiteStageLift), transparent);
+  will-change: transform;
+}
+/* Millimetre paper, the drawing's own ground: fine lines every 8 px, heavier every 40 px. */
+:root[data-look="drawing"] .paper {
+  display: block;
+  background-image:
+    linear-gradient(var(--studio-rule) 1px, transparent 1px),
+    linear-gradient(90deg, var(--studio-rule) 1px, transparent 1px),
+    linear-gradient(var(--studio-ruleSoft) 1px, transparent 1px),
+    linear-gradient(90deg, var(--studio-ruleSoft) 1px, transparent 1px);
+  background-size: 40px 40px, 40px 40px, 8px 8px, 8px 8px;
+  opacity: .55;
+}
+.layer { position: absolute; left: 0; top: 0; width: 0; height: 0; will-change: transform; }
+.layer img { position: absolute; left: 0; top: 0; max-width: none; transform-origin: 0 0; display: block; will-change: transform, opacity; user-select: none; -webkit-user-drag: none; }
+
+/* The centre line: long dash, short dash. It is the drawing look's one memorable element, so no other look has it. */
+.axis { display: none; position: absolute; pointer-events: none; }
+:root[data-look="drawing"] .axis {
+  display: block; left: 0; top: -150vmax; width: 1px; height: 300vmax;
+  background: repeating-linear-gradient(to bottom, var(--studio-acc) 0 22px, transparent 22px 27px, var(--studio-acc) 27px 30px, transparent 30px 35px);
+}
+
+/* ── Shared type ── */
+.shell { position: absolute; left: var(--space-studio-margin-fluid); right: var(--space-studio-margin-fluid); }
+.title { margin: 0; font-size: var(--size-studio-flagship-fluid); font-weight: var(--font-studio-flagship); letter-spacing: var(--size-studio-flagship-tracking); line-height: 1.06; text-wrap: balance; }
+.code { margin: 8px 0 0; font-size: var(--size-studio-label); font-weight: var(--font-studio-code); font-variant-numeric: tabular-nums; color: var(--ink2); }
+.lead { margin: 16px 0 0; font-size: var(--size-studio-lead); line-height: 1.5; color: var(--ink2); max-width: 44ch; }
+.btns { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn {
+  display: inline-flex; align-items: center; min-height: var(--size-studio-control); padding: 0 20px;
+  border-radius: var(--radius-studio-radius); border: var(--size-field-hairline) solid transparent;
+  font-size: var(--size-studio-button); font-weight: var(--font-studio-button); text-decoration: none; white-space: nowrap;
+}
+.btn-main { background: var(--studio-acc); color: var(--studio-onAccent); }
+.btn-main:hover { background: var(--studio-accDark); }
+.btn-out { border-color: var(--outline-ink); color: var(--outline-ink); }
+.btn-out:hover { background: var(--outline-ink); color: var(--bg); }
+
+/* ── Type 1: one tool ── */
+.one .txt-up { top: 50%; transform: translateY(-50%); width: auto; right: auto; max-width: min(46%, 560px); }
+.one .txt-lay { bottom: clamp(16px, 3.5vh, 40px); display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(20px, 3vw, 56px); align-items: end; }
+.one .txt-lay .title { font-size: var(--size-field-h3-fluid); letter-spacing: var(--size-field-h3-tracking); }
+.adv { margin: 12px 0 0; padding: 0; list-style: none; font-size: var(--size-studio-cell); line-height: 1.4; color: var(--ink2); }
+.adv li { padding: 3px 0; }
+.figs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 0; }
+.fig { padding: 10px 0; border-top: var(--size-field-hairline) solid var(--rule); }
+.fig:nth-child(odd) { padding-right: 18px; }
+.fig dt { font-size: var(--size-studio-label); color: var(--ink2); line-height: 1.3; }
+.fig dd { margin: 3px 0 0; font-size: var(--size-field-card-title); font-weight: var(--font-studio-fact); letter-spacing: var(--size-field-card-title-tracking); font-variant-numeric: tabular-nums; line-height: 1.15; }
+.figs-side .btns { margin-top: 12px; }
+/* In the drawing look the figures take the form of a drawing's title block. */
+:root[data-look="drawing"] .figs { background: var(--studio-bg); border: var(--size-field-hairline) solid var(--strong-rule); }
+:root[data-look="drawing"] .fig { padding: 8px 12px; border-top: 0; border-bottom: var(--size-field-hairline) solid var(--strong-rule); }
+:root[data-look="drawing"] .fig:nth-child(odd) { border-right: var(--size-field-hairline) solid var(--strong-rule); padding-right: 12px; }
+:root[data-look="drawing"] .fig:nth-last-child(-n+2) { border-bottom: 0; }
+:root[data-look="drawing"] .fig:nth-child(odd):last-child { border-right: 0; }
+
+/* ── Type 2: the line ── */
+.line .head { top: clamp(16px, 4vh, 40px); }
+.floor { position: absolute; left: 0; right: 0; height: 1px; background: var(--strong-rule); }
+.rack { position: absolute; left: 0; right: 0; overflow: hidden; }
+.rack-track { position: absolute; left: 0; bottom: 0; display: flex; align-items: flex-end; will-change: transform; }
+.rack-tool { position: relative; display: block; flex: none; outline-offset: -2px; transform-origin: 50% 100%; will-change: transform, opacity; }
+.rack-tool img { position: relative; display: block; width: 100%; height: 100%; user-select: none; -webkit-user-drag: none; }
+:root[data-look="drawing"] .rack-tool::before {
+  content: ""; position: absolute; left: 50%; top: -28px; bottom: 0; width: 1px;
+  background: repeating-linear-gradient(to bottom, var(--studio-acc) 0 14px, transparent 14px 18px, var(--studio-acc) 18px 20px, transparent 20px 24px);
+}
+.caption { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr) auto; gap: 12px clamp(20px, 3vw, 56px); align-items: start; }
+.caption h3 { margin: 0; font-size: var(--size-field-card-title); letter-spacing: var(--size-field-card-title-tracking); line-height: 1.2; text-wrap: balance; }
+.caption .code { margin-top: 4px; }
+.caption p.say { margin: 0; color: var(--ink2); font-size: var(--size-studio-cell); line-height: 1.45; max-width: 62ch; }
+
+/* ── Type 3: the system ── */
+.system .head { top: 50%; transform: translateY(-50%); right: auto; width: min(32%, 430px); }
+.system .head .btns { margin-top: 22px; }
+/* Rows slant, so a name's far end can reach the tool above; the plate keeps every name readable wherever it lands. */
+.tag { position: absolute; left: 0; top: 0; padding: 1px 4px; background: var(--bg); font-size: var(--size-studio-label); font-weight: var(--font-studio-label); line-height: 1.2; white-space: nowrap; color: var(--ink); will-change: transform, opacity; }
+.tag span { font-weight: var(--font-studio-nav); color: var(--ink2); }
+
+/* ── The still version: no pin, nothing moves, nothing is lost. ── */
+.still { display: none; }
+:root.is-still .scene { height: auto; }
+:root.is-still .stage { display: none; }
+:root.is-still .still {
+  display: block; padding: 32px var(--space-studio-margin-fluid);
+  background: var(--bg); color: var(--ink);
+}
+:root[data-look="dark"] .still { --bg: var(--studio-graphiteStage); --ink: var(--studio-onInk); --ink2: var(--studio-onInkSoft); --rule: var(--studio-onInkLine); --strong-rule: var(--studio-onInkEdge); --outline-ink: var(--studio-onInk); }
+:root[data-look="steel"] .still { --bg: var(--studio-surf); --ink: var(--studio-ink); --ink2: var(--studio-ink2); --rule: var(--studio-rule); --strong-rule: var(--studio-ink2); --outline-ink: var(--studio-ink); }
+:root[data-look="drawing"] .still { --bg: var(--studio-bg); --ink: var(--studio-ink); --ink2: var(--studio-ink2); --rule: var(--studio-rule); --strong-rule: var(--studio-ink); --outline-ink: var(--studio-ink); }
+:root.is-still .still-one { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 32px; align-items: start; }
+.still-one .v { height: min(70vh, 620px); width: auto; display: block; }
+.still-one .b { width: 100%; max-width: 760px; display: block; margin: 20px 0; }
+.still-rack { display: flex; gap: 18px; overflow-x: auto; padding: 18px 0 8px; align-items: flex-end; margin-top: 12px; }
+.still-rack a { flex: none; width: 128px; color: inherit; text-decoration: none; font-size: var(--size-studio-label); line-height: 1.25; }
+.still-rack img { display: block; height: 340px; width: auto; max-width: 100%; object-fit: contain; object-position: left bottom; margin-bottom: 10px; }
+.still-sys { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; margin-top: 20px; }
+.still-sys img { width: 100%; display: block; margin-bottom: 8px; }
+.still-sys span { font-size: var(--size-studio-label); font-weight: var(--font-studio-label); }
+.still-sys em { font-style: normal; font-weight: var(--font-studio-nav); color: var(--ink2); }
+.still .title { font-size: var(--size-field-h3-fluid); }
+
+/* ── Narrow screens ── */
+@media (max-width: 900px) {
+  .bar { flex-wrap: wrap; gap: 8px 12px; }
+  .bar-toggle {
+    display: block; min-height: 44px; padding: 0 12px; background: transparent; color: var(--studio-onInk);
+    border: var(--size-field-hairline) solid var(--studio-onInkLine); border-radius: var(--radius-studio-r-sm); font-size: var(--size-studio-label);
+  }
+  .bar-controls { display: none; width: 100%; padding-bottom: 8px; gap: 10px; }
+  .bar.open .bar-controls { display: flex; }
+  .seg { flex-wrap: wrap; gap: 4px; }
+  .seg button { min-height: 44px; }
+  .seg-name { width: 100%; margin: 0; }
+  .seg-inline .seg-name { width: auto; margin-right: 8px; }
+
+  .one .txt-up { top: clamp(14px, 3vh, 28px); transform: none; max-width: 58%; }
+  .one .lead { font-size: var(--size-studio-cell); margin-top: 10px; }
+  .one .txt-lay { grid-template-columns: minmax(0, 1fr); gap: 10px; bottom: 12px; }
+  .one .adv { display: none; }
+  .one .fig { padding: 7px 0; }
+  .fig dd { font-size: var(--size-studio-fact); }
+  .figs-side .btns { margin-top: 8px; }
+  .btn { padding: 0 14px; min-height: 44px; font-size: var(--size-studio-label); }
+
+  .caption { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  .caption h3 { font-size: var(--size-studio-h3); letter-spacing: var(--size-studio-h3-tracking); }
+  .caption p.say { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+
+  .system .head { top: clamp(12px, 2.5vh, 24px); transform: none; right: var(--space-studio-margin-fluid); width: auto; }
+  .system .head .title { font-size: var(--size-field-strip-title); letter-spacing: var(--size-field-strip-title-tracking); }
+  .system .head .lead { display: none; }
+  .system .head .btns { position: absolute; margin: 0; }
+
+  :root.is-still .still-one { grid-template-columns: minmax(0, 1fr); }
+  .still-one .v { height: 380px; }
+}

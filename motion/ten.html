@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="uk" data-theme="light" data-look="dark">
+<head>
+<meta charset="utf-8"><meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Десять подач: тест</title>
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="lab.css">
+<link rel="stylesheet" href="ten.css">
+</head>
+<body>
+
+<header class="bar">
+  <strong class="bar-name">Десять подач: тест</strong>
+  <button class="bar-toggle" type="button" aria-expanded="false" aria-controls="bar-controls">Налаштування</button>
+  <div class="bar-controls" id="bar-controls">
+    <a class="bar-link" href="index.html">Три типи</a>
+    <a class="bar-link" href="more.html">Ще десять</a>
+    <div class="seg" role="group" aria-label="Темп">
+      <span class="seg-name">Темп</span>
+      <button type="button" data-set="tempo" data-value="0.65">Швидко</button>
+      <button type="button" data-set="tempo" data-value="1">Звично</button>
+      <button type="button" data-set="tempo" data-value="1.5">Повільно</button>
+    </div>
+    <div class="seg" role="group" aria-label="Анімація">
+      <button type="button" data-set="still" data-value="0">З анімацією</button>
+      <button type="button" data-set="still" data-value="1">Без анімації</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="note note-top">
+    <h1>Десять подач за мотивами сторінки DJI Inspire 3</h1>
+    <p>Усе в темній сцені, яку Ви обрали. Рендери, назви, таблиці й склад систем узято з каталогу, нічого не дописано. Під кожним варіантом сказано, що в ньому взято з DJI, а чого ми повторити не можемо. Наприкінці сторінки перелічено прийоми DJI, які зараз недоступні зовсім.</p>
+  </section>
+
+  <section class="note">
+    <h2>1. Слово відкриває виріб</h2>
+    <p>Код виробу набрано на весь екран, і в літерах видно метал самого виробу. Прокрутка пролітає крізь літеру, а за нею виріб лягає на своє місце.</p>
+    <p class="ref"><b>Як у DJI:</b> заголовки «MASTER THE UNSEEN» і «8K», у літерах яких іде відео.</p>
+    <p class="ref"><b>Відмінність:</b> у DJI в літерах відео польоту, у нас лише рендер, що повільно зсувається, бо відео немає.</p>
+  </section>
+  <section class="scene word" id="word" lang="en" aria-label="Variant 1"></section>
+
+  <section class="note">
+    <h2>2. Світло проходить уздовж</h2>
+    <p>Виріб лежить у темряві, смуга світла проходить від краю до краю. Потім засвічується весь виріб і з’являються цифри.</p>
+    <p class="ref"><b>Як у DJI:</b> блок «Sleek, Integrated Design», де дрон проступає з темряви.</p>
+    <p class="ref"><b>Відмінність:</b> у DJI це зйомка зі справжнім світлом. У нас світло зроблено маскою на рендері, тож відблиски на металі за смугою не рухаються.</p>
+  </section>
+  <section class="scene light" id="light" lang="en" aria-label="Variant 2"></section>
+
+  <section class="note">
+    <h2>3. Камера вздовж розрізу</h2>
+    <p>Камера зблизька проходить уздовж розрізу башмака, а речення про виріб засвічується слово за словом. Наприкінці видно весь виріб і його цифри.</p>
+    <p class="ref"><b>Як у DJI:</b> блок, де камера підходить до частин дрона, а в тексті по черзі підсвічуються їхні назви.</p>
+    <p class="ref"><b>Чого не можна:</b> назвати частини, бо каталог не каже, де яка деталь на рендері. Великий план тут близький до крупних деталей, які Ви відхилили 19.10. Якщо це те саме, варіант відкидаємо.</p>
+  </section>
+  <section class="scene inside" id="inside" lang="en" aria-label="Variant 3"></section>
+
+  <section class="note">
+    <h2>4. Крізь отвір у таблицю</h2>
+    <p>Камера летить у відкритий кінець пакера, всередині темніє, і з темряви виходить таблиця розмірів.</p>
+    <p class="ref"><b>Як у DJI:</b> наближення до камери дрона аж до матриці.</p>
+    <p class="ref"><b>Відмінність:</b> рендер при такому наближенні розтягується понад свою роздільність і розмивається. Це прикрито затемненням, але в останню мить розмиття видно.</p>
+  </section>
+  <section class="scene through" id="through" lang="en" aria-label="Variant 4"></section>
+
+  <section class="note">
+    <h2>5. Велика цифра</h2>
+    <p>Дві справжні цифри на весь екран: вантажопідйомність і тиск випробування. Прокрутка проходить розміри від найменшого до найбільшого, і цифри змінюються цілими значеннями з таблиці, без перебору проміжних.</p>
+    <p class="ref"><b>Як у DJI:</b> «15 km» і «7 km» з тонкою лінією між ними.</p>
+  </section>
+  <section class="scene figure" id="figure" lang="en" aria-label="Variant 5"></section>
+
+  <section class="note">
+    <h2>6. Розмірні лінії</h2>
+    <p>Біля кінців виробу креслиться діапазон встановлення і найменший внутрішній діаметр. Розміри перемикаються кнопками під виробом.</p>
+    <p class="ref"><b>Як у DJI:</b> дрон із підписаними датчиками.</p>
+    <p class="ref"><b>Чого не можна:</b> поставити лінії на справжні місця й у масштабі. Каталог не каже, де ці розміри на виробі, тому на сцені написано, що це схема.</p>
+  </section>
+  <section class="scene dims" id="dims" lang="en" aria-label="Variant 6"></section>
+
+  <section class="note">
+    <h2>7. Перемикач типів</h2>
+    <p>Чотири типи якоря з каталогу. Прокрутка або вкладки перемикають їх, а під кожним написано, в яку систему він входить.</p>
+    <p class="ref"><b>Як у DJI:</b> вкладки «Tilt Boost / 360° Pan / Transit Mode».</p>
+    <p class="ref"><b>Відмінність:</b> у DJI там відео, як дрон перетворюється. У нас між типами лише плавна заміна, бо руху механізму немає.</p>
+  </section>
+  <section class="scene types" id="types" lang="en" aria-label="Variant 7"></section>
+
+  <section class="note">
+    <h2>8. Таблиця стовпчиками</h2>
+    <p>Таблиця підвіски у вигляді стовпчиків: вантажопідйомність або внутрішній діаметр по розмірах. Наведення на розмір показує весь його рядок.</p>
+    <p class="ref"><b>Як у DJI:</b> стовпчики динамічного діапазону камери.</p>
+  </section>
+  <section class="scene bars" id="bars" lang="en" aria-label="Variant 8"></section>
+
+  <section class="note">
+    <h2>9. Два вироби поруч</h2>
+    <p>Дві підвіски одного профілю розходяться в боки, і видно, що їх різнить: колонка таблиці, якої немає в іншій, і переваги, що є лише в одній. Усе спільне зібрано в один рядок.</p>
+    <p class="ref"><b>Як у DJI:</b> шторка «до і після».</p>
+    <p class="ref"><b>Чого не можна:</b> саму шторку. Вона потребує двох знімків одного виробу з однієї камери, а таких пар у каталозі немає.</p>
+  </section>
+  <section class="scene pair" id="pair" lang="en" aria-label="Variant 9"></section>
+
+  <section class="note">
+    <h2>10. Схема систем</h2>
+    <p>Чотири системи для зарізки бокового стовбура. Вкладка або прокрутка перебудовує склад: що входить стандартно, що за бажанням, а що не входить. Якір змінюється на той тип, що стоїть у системі.</p>
+    <p class="ref"><b>Як у DJI:</b> схема «Dual Control» з вкладками.</p>
+    <p class="ref"><b>Без анімації</b> це таблиця поєднань, про яку казала компанія.</p>
+  </section>
+  <section class="scene scheme" id="scheme" lang="en" aria-label="Variant 10"></section>
+
+  <section class="note note-end">
+    <h2>Чого з DJI зараз не зробити</h2>
+    <ul class="cant">
+      <li><b>Відео в роботі,</b> повноекранні кадри й фони. Немає відео з об’єктів, потрібна зйомка або фото з кейсів.</li>
+      <li><b>Рух механізму,</b> як шасі в DJI: розкриття плашок, роздування пакера. Потрібна анімація від інженера з його 3D-моделей (питання Q-31 досі відкрите).</li>
+      <li><b>Обертання на 360° і перегляд з усіх боків.</b> У каталозі лише два ракурси. Потрібні 3D-модель або серія рендерів по колу. Найближче, що є, це поворот із першої сторінки.</li>
+      <li><b>Рентген,</b> коли корпус стає прозорим. Потрібна пара з однієї камери: суцільний виріб і розріз. У каталозі деякі вироби показані в розрізі, але в них розрізані обидва ракурси.</li>
+      <li><b>Підписи деталей і наближення до них.</b> Каталог не каже, де яка деталь на рендері, потрібна розмітка інженера.</li>
+      <li><b>Сітка крупних планів.</b> Немає фото, і крупні плани деталей Ви відхилили 19.10.</li>
+      <li><b>Знімки інтерфейсу, 3D-рельєф, радарні кола.</b> У виробів немає нічого, що так показувати.</li>
+    </ul>
+    <p>Скажіть, які номери лишити. Кнопка «Без анімації» вгорі показує, що побачить людина з вимкненою анімацією в системі.</p>
+  </section>
+</main>
+
+<script src="data-ten.js"></script>
+<script src="ten.js"></script>
+</body>
+</html>
